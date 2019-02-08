@@ -11,7 +11,7 @@ class SongList extends Component {
                     <h2>There are {songs.length} songs in the playlist:</h2>
                 </div>
                 <div>
-                    {songs.map(function (song, i) {
+                    {songs.map((song, i) => {
                         return (
                         <div key={i}>
                             <h3>{i+1}{'. '}{song.title}{' '}{song.duration}</h3>
@@ -25,7 +25,7 @@ class SongList extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state)
+    // components will access via this.props.songs
     return {
         songs: state.songs
     };
