@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { selectSong } from '../actions'
 
 class SongList extends Component {
     render() {
-        const { songs } = this.props
+        const { songs, selectedSong } = this.props
         // this.props === { songs: state.songs }
         return(
             <div>
@@ -13,22 +14,38 @@ class SongList extends Component {
                 <div>
                     {songs.map((song, i) => {
                         return (
-                        <div key={i}>
-                            <h3>{i+1}{'. '}{song.title}{' '}{song.duration}</h3>
+                        <div style={{marginBottom: '10px'}} key={i}>
+                            <div>{i+1}{'. '}{song.title}{' '}{song.duration}</div>
+                            <button onClick={() => this.props.selectSong(song)}>Select Song</button>
                         </div>
                         )
                     })}
+                </div>
+                <div style={{marginTop: '10px'}}>
+                    { selectedSong ? (
+                        <div>
+                            Selected Song: {selectedSong.title}
+                            <br/>
+                            Duration: {selectedSong.duration}
+                        </div>
+                    ) : (
+                        <div>
+                            No Selected Song.
+                        </div>
+                    )}
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     // components will access via this.props.songs
+    console.log(state)
     return {
-        songs: state.songs
+        songs: state.songs,
+        selectedSong: state.selectedSong
     };
 }
 
-export default connect(mapStateToProps)(SongList);
+export default connect(mapStateToProps, { selectSong })(SongList);
