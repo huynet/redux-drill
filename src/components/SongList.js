@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { selectSong } from '../actions'
 
+// Class Component: this.props
+// Func Component: (props) => { // props. only is enough}
 class SongList extends Component {
-
     render() {
-        const { songs, selectedSong } = this.props
+        const { songs } = this.props
         // this.props === { songs: state.songs }
         return(
             <div>
@@ -27,6 +28,8 @@ class SongList extends Component {
     }
 }
 
+// input: state
+// output: props at class
 const mapStateToProps = (state) => {
     // components will access via this.props.songs
     return {
