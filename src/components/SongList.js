@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { selectSong } from '../actions'
 
 class SongList extends Component {
+
     render() {
         const { songs, selectedSong } = this.props
         // this.props === { songs: state.songs }
@@ -21,19 +22,6 @@ class SongList extends Component {
                         )
                     })}
                 </div>
-                <div style={{marginTop: '10px'}}>
-                    { selectedSong ? (
-                        <div>
-                            Selected Song: {selectedSong.title}
-                            <br/>
-                            Duration: {selectedSong.duration}
-                        </div>
-                    ) : (
-                        <div>
-                            No Selected Song.
-                        </div>
-                    )}
-                </div>
             </div>
         )
     }
@@ -41,7 +29,6 @@ class SongList extends Component {
 
 const mapStateToProps = (state) => {
     // components will access via this.props.songs
-    console.log(state)
     return {
         songs: state.songs,
         selectedSong: state.selectedSong
