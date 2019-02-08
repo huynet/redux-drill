@@ -6,7 +6,20 @@ class SongList extends Component {
         const { songs } = this.props
         // this.props === { songs: state.songs }
         return(
-            <div>{songs.length}</div>
+            <div>
+                <div>
+                    <h2>There are {songs.length} songs in the playlist:</h2>
+                </div>
+                <div>
+                    {songs.map(function (song, i) {
+                        return (
+                        <div key={i}>
+                            <h3>{i+1}{'. '}{song.title}{' '}{song.duration}</h3>
+                        </div>
+                        )
+                    })}
+                </div>
+            </div>
         )
     }
 }
